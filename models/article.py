@@ -36,6 +36,14 @@ class Article:
         if isinstance(content, str) and len(content):
             self._content = content
     
-    @property
-    def magazine(self):
-      return self._magazine
+    @staticmethod
+    def create(cursor, title, content, author_id, magazine_id):
+        cursor.execute('INSERT INTO articles (title, content, author_id, magazine_id) VALUES (?, ?, ?, ?)',(title, content, author_id, magazine_id))
+        return cursor.lastrowid
+    
+    @staticmethod
+    def get_by_id(cursor, id):
+        cursor.execute('SELECT * FROM articles WHERE id = ?', (id,))
+        row = cursor.fetchone()
+        return Article(row['id'], row['title'], row['content'], row['author_id'], row['magazine_id']) if row else None
+        
