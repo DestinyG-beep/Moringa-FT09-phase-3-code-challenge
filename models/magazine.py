@@ -19,7 +19,7 @@ class Magazine:
         self.id = cursor.lastrowid
         conn.close()
 
-      @property
+    @property
     def id (self):
         return self._id
     
@@ -27,7 +27,7 @@ class Magazine:
     def id (self, id):
         self._id = id   
 
-     @property
+    @property
     def name(self):
         return self._name
     
@@ -73,7 +73,7 @@ class Magazine:
 
         return contributors
     
-     @staticmethod
+    @staticmethod
     def get_id(magazine_id):
         conn = get_db_connection()
         cursor = conn.cursor()
